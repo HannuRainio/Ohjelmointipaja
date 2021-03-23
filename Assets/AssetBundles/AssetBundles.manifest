@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 3051513378
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: championsbundle.scenes
+      Dependencies: {}
+    Info_1:
+      Name: championsbundle.items
+      Dependencies: {}
