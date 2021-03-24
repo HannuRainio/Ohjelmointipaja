@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System;
 
-public class HexGrid : MonoBehaviour {
+public class HexGridBank : MonoBehaviour {
 
 	public int width = 6;
 	public int height = 6;
@@ -64,6 +64,7 @@ public class HexGrid : MonoBehaviour {
 		{
 		  //  Do nothing. This does not concern this grid
 		}
+
 	}
 
 	void CreateCell (int x, int z, int i) {
