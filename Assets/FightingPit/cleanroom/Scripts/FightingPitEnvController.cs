@@ -38,6 +38,16 @@ namespace FightingPit
 	    /// The ground. The bounds are used to spawn the elements.
 	    /// </summary>
 	    public GameObject ground;
+	    
+	    /// <summary>
+	    /// The goal area bounds.
+	    /// </summary>
+	    [HideInInspector]
+	    public Bounds goalAreaBounds;
+	    /// <summary>
+	    /// The goal area. The bounds are used to train simple behavior.
+	    /// </summary>
+	    public GameObject goalArea;
 
 	    Material m_GroundMaterial; //cached on Awake()
 
@@ -63,6 +73,9 @@ namespace FightingPit
 
 		// Get the ground's bounds
 		areaBounds = ground.GetComponent<Collider>().bounds;
+		// Get the goal area's bounds
+		goalAreaBounds = goalArea.GetComponent<Collider>().bounds;
+		Debug.Log(goalAreaBounds);
 		// Get the ground renderer so we can change the material when a goal is scored
 		m_GroundRenderer = ground.GetComponent<Renderer>();
 		// Starting material
@@ -101,7 +114,23 @@ namespace FightingPit
 		    ResetScene();
 		}
 	    }
-
+	    /*
+	    public void GoalTouched(Team scoredTeam)
+	    {
+		if (scoredTeam == Team.Blue)
+		{
+		    m_BlueAgentGroup.AddGroupReward(1 - m_ResetTimer / MaxEnvironmentSteps);
+		    m_PurpleAgentGroup.AddGroupReward(-1);
+		}
+		else
+		{
+		    m_PurpleAgentGroup.AddGroupReward(1 - m_ResetTimer / MaxEnvironmentSteps);
+		    m_BlueAgentGroup.AddGroupReward(-1);
+		}
+		m_PurpleAgentGroup.EndGroupEpisode();
+		m_BlueAgentGroup.EndGroupEpisode();
+		ResetScene();
+	    }*/
 	    public void TouchedHazard(FighterAgent agent)
 	    {
 		m_NumberOfRemainingPlayers--;
@@ -213,7 +242,7 @@ namespace FightingPit
 		    item.Agent.transform.SetPositionAndRotation(pos, rot);
 		    item.Rb.velocity = Vector3.zero;
 		    item.Rb.angularVelocity = Vector3.zero;
-		    item.Agent.MyKey.SetActive(false);
+		    //item.Agent.MyKey.SetActive(false);
 		    item.Agent.IHaveAKey = false;
 		    item.Agent.gameObject.SetActive(true);
 		    m_AgentGroup.RegisterAgent(item.Agent);

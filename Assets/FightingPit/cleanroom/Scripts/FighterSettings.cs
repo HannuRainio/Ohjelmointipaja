@@ -34,5 +34,19 @@ namespace FightingPit
 	    /// </summary>
 	    public Material failMaterial;
 
+	    /// <summary>
+	    /// Material for red team.
+	    /// </summary>
+            public Material redTeamMaterial;
+            
+	    /// <summary>
+	    /// Material for blue team.
+	    /// </summary>
+            public Material blueTeamMaterial;
+            
+	    /// <summary>
+	    /// Randomize Players Team For Training
+	    /// </summary>
+            public bool randomizePlayersTeamForTraining = true;
 	}
 }

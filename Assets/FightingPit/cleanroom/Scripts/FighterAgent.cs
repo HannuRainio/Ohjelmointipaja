@@ -21,7 +21,7 @@ namespace FightingPit
 	    public Team team;
 	    bool crouch = false;
 	    bool m_Jump = false;
-	    public GameObject MyKey; //my key gameobject. will be enabled when key picked up.
+	    //public GameObject MyKey; //my key gameobject. will be enabled when key picked up.
 	    public bool IHaveAKey; //have i picked up a key
 	    private FighterSettings m_PushBlockSettings;
 	    BehaviorParameters m_BehaviorParameters;
@@ -65,6 +65,10 @@ namespace FightingPit
 	    public override void CollectObservations(VectorSensor sensor)
 	    {
 		sensor.AddObservation(IHaveAKey);
+		sensor.AddObservation(m_AgentRb.velocity.x);
+		sensor.AddObservation(m_AgentRb.velocity.y);
+		sensor.AddObservation(m_AgentRb.velocity.z);
+		Debug.Log(m_AgentRb.velocity);
 	    }
 
 	    /// <summary>
@@ -100,7 +104,8 @@ namespace FightingPit
 		        break;
 
 		}
-		
+		crouch = false;
+		m_Jump = false;
 		switch (vertical)
 		{
 		    case 1:
@@ -131,6 +136,10 @@ namespace FightingPit
 
 	    void OnCollisionEnter(Collision col)
 	    {
+		if (col.gameObject.CompareTag("goalArea"))
+		{
+			Debug.Log("Collided with goal area");
+		}
 	    /*
 		if (col.transform.CompareTag("lock"))
 		{
@@ -168,11 +177,11 @@ namespace FightingPit
 	    
 	    public override void WriteDiscreteActionMask(IDiscreteActionMask actionMask)
 	    {
-		if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded")){
+		/*if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded")){
 		    var branch = 2;
 		    var actionsToDisable = new[] {1, 2};
 		    actionMask.WriteMask(branch, actionsToDisable);
-		}
+		}*/
 		// same for ml-agents 2.0
 		//actionMask.SetActionEnabled(2, 1, false);
 	    }

@@ -84,7 +84,7 @@ namespace FightingPit
 				m_Capsule.height = m_Capsule.height / 2f;
 				m_Capsule.center = m_Capsule.center / 2f;
 				m_Crouching = true;
-				Debug.Log("capsuleheight: crouching");
+				//Debug.Log("capsuleheight: crouching");
 			}
 			else
 			{
@@ -93,10 +93,10 @@ namespace FightingPit
 				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
 				{
 					m_Crouching = true;
-					Debug.Log("crouchRay: crouching" + crouchRay);
+					//Debug.Log("crouchRay: crouching" + crouchRay);
 					return;
 				}else{
-				    Debug.Log("crouchRay: not crouching" + crouchRay);
+				    //Debug.Log("crouchRay: not crouching" + crouchRay);
 				}
 				m_Capsule.height = m_CapsuleHeight;
 				m_Capsule.center = m_CapsuleCenter;
@@ -114,7 +114,7 @@ namespace FightingPit
 				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
 				{
 					m_Crouching = true;
-					Debug.Log("LowHeadRoom: crouching");
+					//Debug.Log("LowHeadRoom: crouching");
 				}
 			}
 		}
